@@ -3,13 +3,31 @@ import ReactDOM from 'react-dom'
 
 const App = () => {
   // const-definitions
-  const course = 'Half Stack application development'
-  const part1 = 'Fundamentals of React'
-  const exercises1 = 10
-  const part2 = 'Using props to pass data'
-  const exercises2 = 7
-  const part3 = 'State of a component'
-  const exercises3 = 14
+  // const course = 'Half Stack application development'
+  // const part1 = 'Fundamentals of React'
+  // const exercises1 = 10
+  // const part2 = 'Using props to pass data'
+  // const exercises2 = 7
+  // const part3 = 'State of a component'
+  // const exercises3 = 14
+
+  const course = {
+    name: 'Half Stack application development',
+    parts: [
+      {
+        name: 'Fundamentals of React',
+        exercises: 10
+      },
+      {
+        name: 'Using props to pass data',
+        exercises: 7
+      },
+      {
+        name: 'State of a component',
+        exercises: 14
+      }
+    ]
+  }
 
   const Header = (props) => {
     return (
@@ -23,13 +41,12 @@ const App = () => {
 
   //destructuring props  
   const Content = (props) => {
-    const {part} = props;
     const {title} = props;
-    const {excersises} = props;
+    const {exercises} = props;
     return (
       <div>
         <p>
-          <Part part={part} title={title} excersises={excersises} />
+          <Part title={title} exercises={exercises} />
         </p>
       </div>
     )
@@ -39,8 +56,8 @@ const App = () => {
     return (
       <div>
         <p>
-          part={props.part} = {props.title} <br />
-          excersises{props.part}={props.excersises}
+          Part: {props.title} <br />
+          Exercises: {props.exercises}
         </p>
       </div>
     )
@@ -51,7 +68,7 @@ const App = () => {
     return (
       <div>
         <p>
-        <p>Number of exercises {exercises1 + exercises2 + exercises3}</p>
+        <p>Number of exercises: {course.parts[0].exercises + course.parts[1].exercises + course.parts[2].exercises}</p>
         </p>
       </div>
     )
@@ -61,10 +78,10 @@ const App = () => {
 
   return (
     <div>
-      <Header course={course} />
-      <Content part={"1"} title={part1} excersises={exercises1} />
-      <Content part={"2"} title={part2} excersises={exercises2} />
-      <Content part={"3"} title={part3} excersises={exercises3} />      
+      <Header course={course.name} />
+      <Content part={"1"} title={course.parts[0].name} exercises={course.parts[0].exercises} />
+      <Content part={"2"} title={course.parts[1].name} exercises={course.parts[1].exercises} />
+      <Content part={"3"} title={course.parts[2].name} exercises={course.parts[2].exercises} />      
       <Total/>
     </div>
   )
